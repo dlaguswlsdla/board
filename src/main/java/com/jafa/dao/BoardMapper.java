@@ -8,4 +8,6 @@ public interface BoardMapper {
 	
 	List<Board> getList();
 	
+	void insert(Board board);
+	
 }
