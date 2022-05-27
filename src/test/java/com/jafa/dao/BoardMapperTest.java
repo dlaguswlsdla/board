@@ -52,11 +52,38 @@ public class BoardMapperTest {
 	public void insertTest() {
 		Board board = new Board();
 		board.setTitle("제목 : 테스트 중입니다.");
-		board.setContents("내용 : 테스트 중입니다.");
+		board.setContent("내용 : 테스트 중입니다.");
 		board.setWriter("글쓴이 : 임현진");
 		mapper.insert(board);
+		
+		System.out.println("가장 최신글 번호" + board.getBno());
+		
 		List<Board> list = mapper.getList();
 		assertEquals(5,list.size());
+	}
+	
+	@Test
+	public void findByBno() {
+		Board findByBno = mapper.findByBno(1L);
+		assertEquals("게시물 제목입니다1.", findByBno.getTitle());
+		assertEquals("임현진1", findByBno.getWriter());
+		assertEquals("배가 고픕니다1.", findByBno.getContent());
+	}
+	
+	@Test
+	public void deleteTest() {
+		mapper.delete(1L);
+		Board board = mapper.findByBno(1L);
+		assertNull(board);
+	}
+	
+	public void updateTest() {
+		Board board = mapper.findByBno(1L);
+		board.setTitle("1번 글 제목 수정");
+		mapper.update(board);
+		Board updated = mapper.findByBno(1L);
+		assertEquals("1번 글 제목 수정", updated.getTitle());
+		assertEquals(board.getContent(), updated.getContent());
 	}
 
 }
