@@ -29,4 +29,8 @@ public class BoardService {
 	public void register(Board board) {
 		mapper.insert(board);
 	}
+
+	public void update(Board board) {
+		mapper.update(board);
+	}
 }
