@@ -1,8 +1,6 @@
-package com.jafa.config;
+package com.jafa.dao;
 
-import static org.junit.Assert.*;
-
-import javax.sql.DataSource;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,17 +9,20 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {RootConfig.class, ServletConfig.class})
-@WebAppConfiguration
-public class RootConfigTest {
+import com.jafa.config.RootConfig;
+import com.jafa.config.ServletConfig;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = {RootConfig.class,ServletConfig.class})
+@WebAppConfiguration
+public class TotalCountTest {
+		
 	@Autowired
-	private DataSource dataSource;
+	private BoardMapper mapper;
 	
 	@Test
-	public void dataSourceTest() {
-		assertNotNull(dataSource);
+	public void totalCountTest() {
+		assertEquals(412, mapper.totalCount());
 	}
 
 }

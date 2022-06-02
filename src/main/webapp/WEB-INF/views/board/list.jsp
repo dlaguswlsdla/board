@@ -9,11 +9,12 @@
       <th>작성자</th>
       <th>등록일</th>
       <th>수정일</th>
-   </tr>   
+   </tr> 
+   <c:if test="${not empty list}"> 
    <c:forEach items="${list}" var = "b">
    <tr>
       <td>${b.bno}</td>
-      <td>${b.title}
+      <td>
          <a href="get?bno=${b.bno}">${b.title}</a>
       </td>
       <td>${b.writer}</td>
@@ -26,9 +27,32 @@
       	<fmt:formatDate value="${updateDate}" pattern="yyyy-MM-dd HH:mm"/>
       </td>
    </tr>
-   </c:forEach>   
+   </c:forEach> 
+   </c:if> 
+   <c:if test="${empty list}">
+   		<tr>
+   			<td colspan="5">
+   			게시글이 존재하지 않습니다.
+   			</td>
+   		</tr>
+   </c:if> 
 </table>
-<a href="${pageContext.request.contextPath}/board/register" class="btn btn-primary">글등록</a>
+<ul class="pagination">
+<c:if test="${pageMaker.prev}">
+	<li class="page-item"><a href="?page=${pageMaker.startPage-1}" class="page-link">[이전 페이지]</a></li>
+</c:if>
+<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="pageNum">
+	<li class="page-item ${param.page == pageNum ? 'active':''}">
+		<a href="?page=${pageNum}" class="page-link">[${pageNum}]</a>
+	</li>
+</c:forEach>
+<c:if test="${pageMaker.next}">
+	<li class="page-item"><a class="page-link" href="?page=${pageMaker.endPage+1}">[다음 페이지]</a></li>
+</c:if>
+</ul>
+<br>
+
+<a href="${pageContext.request.contextPath}/board/register" class="btn btn-primary">글 등록</a>
    ${message}
 </div>
 <%@ include file = "/WEB-INF/views/layout/footer.jsp" %>
