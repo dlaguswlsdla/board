@@ -12,6 +12,7 @@ public class Criteria {
 	private int page;
 	private int perPageNum;
 	
+	//검색
 	private String type;
 	private String keyword;
 	

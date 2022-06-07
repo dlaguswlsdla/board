@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div class="container">
+
 @java
-</div> 
+
 </body>
 </html>

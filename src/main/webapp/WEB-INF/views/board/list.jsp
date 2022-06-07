@@ -81,8 +81,14 @@ $(function(){
 	let pageForm = $('#pageForm');
 	$('#pageForm a').on('click',function(e){
 	e.preventDefault();
-	pageForm.find('input[name="page"]').val($(this).attr('href'));
 	
+	pageForm.find('input[name="page"]').val($(this).attr('href'));
+	let keyword = pageForm.find('input[name="keyword"]').val();
+	if(keyword.trim() == ''){
+		let pageNum = pageForm.find('input[name="page"]').clone();
+		pageForm.empty();
+		pageForm.append(pageNum)
+	}
 	$('#pageForm').submit();
 	});
 })
