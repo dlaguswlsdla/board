@@ -2,5 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ include file = "/WEB-INF/views/layout/header.jsp" %>
+<div class="container">
 대앰
+</div>
 <%@ include file = "/WEB-INF/views/layout/footer.jsp" %>

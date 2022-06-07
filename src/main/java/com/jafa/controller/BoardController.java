@@ -25,10 +25,10 @@ public class BoardController {
 	
 	@GetMapping("/list")
 	public String getBoardList(Criteria criteria, Model model) {
-		System.out.println("총 게시물 수 : " + service.totalCount());
+		System.out.println("총 게시물 수 : " + service.totalCount(criteria));
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCriteria(criteria);
-		pageMaker.setTotalCount(service.totalCount());
+		pageMaker.setTotalCount(service.totalCount(criteria));
 		System.out.println("================");
 		System.out.println("시작 페이지 : " + pageMaker.getStartPage());
 		System.out.println("끝 페이지 : " + pageMaker.getEndPage());
